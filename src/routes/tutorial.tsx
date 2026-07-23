@@ -21,10 +21,10 @@ const PANELS: { title: string; body: string; visual: React.ReactNode }[] = [
     title: "As peças",
     body: "Cada peça de dominó tem dois lados numerados de 0 a 6. São 28 peças no total. As peças com os dois lados iguais são chamadas de 'duplas'.",
     visual: (
-      <div className="bg-hq-ink rounded-xl p-6 flex justify-center items-center gap-3 flex-wrap halftone ink-border min-h-[120px]">
-        <DominoTile a={6} b={6} size={48} />
-        <DominoTile a={3} b={5} size={48} />
-        <DominoTile a={0} b={4} size={48} />
+      <div className="rounded-xl p-6 flex justify-center items-center gap-3 flex-wrap min-h-[120px]">
+        <DominoTile a={6} b={6} size={48} variant="classic" />
+        <DominoTile a={3} b={5} size={48} variant="classic" />
+        <DominoTile a={0} b={4} size={48} variant="classic" />
       </div>
     ),
   },
@@ -37,10 +37,10 @@ const PANELS: { title: string; body: string; visual: React.ReactNode }[] = [
     title: "Como jogar",
     body: "Na sua vez, encaixe uma peça que combine com uma das pontas da mesa. Se não puder jogar, você compra do monte (modo Draw) ou passa (modo Bloqueio).",
     visual: (
-      <div className="bg-hq-ink rounded-xl p-6 flex justify-center items-center gap-1 halftone ink-border min-h-[120px]">
-        <DominoTile a={3} b={5} size={38} />
-        <DominoTile a={5} b={2} size={38} />
-        <DominoTile a={2} b={2} size={38} orientation="v" />
+      <div className="rounded-xl p-6 flex justify-center items-center gap-1 min-h-[120px]">
+        <DominoTile a={3} b={5} size={38} variant="classic" />
+        <DominoTile a={5} b={2} size={38} variant="classic" />
+        <DominoTile a={2} b={2} size={38} orientation="v" variant="classic" />
       </div>
     ),
   },
