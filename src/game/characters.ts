@@ -1,0 +1,115 @@
+import type { Difficulty } from "./ai";
+
+export type Character = {
+  id: string;
+  name: string;
+  emoji: string;
+  color: string;
+  difficulty: Difficulty;
+  tagline: string;
+  lines: {
+    start: string[];
+    play: string[];
+    lose: string[];
+    win: string[];
+    blocked: string[];
+  };
+};
+
+export const CHARACTERS: Character[] = [
+  {
+    id: "zeca",
+    name: "Zeca Zero",
+    emoji: "🎩",
+    color: "hq-blue",
+    difficulty: "novato",
+    tagline: "Aprendiz de boteco. Joga meio no chute.",
+    lines: {
+      start: ["Bora tentar, quem sabe hoje eu ganho!", "Meu vô jogava melhor, mas tô aqui."],
+      play: ["Essa parece boa!", "Chuta que é macumbeiro!", "Vai que cola..."],
+      lose: ["Ih, comi bola.", "Ainda tô aprendendo, tá?"],
+      win: ["EU VENCI?! Sério?!", "Sorte de principiante!"],
+      blocked: ["Travou geral!", "Cadê a peça boa?"],
+    },
+  },
+  {
+    id: "zaira",
+    name: "Dona Zaíra",
+    emoji: "👵",
+    color: "hq-pink",
+    difficulty: "amador",
+    tagline: "Rainha do bingo do bairro. Vai te ensinar.",
+    lines: {
+      start: ["Senta aí, meu filho, vamos jogar.", "Cuidado com a vovó, viu?"],
+      play: ["Hmm, essa aqui vai bem.", "Toma essa, coisa linda.", "Segura, moleque!"],
+      lose: ["Ah, deu mole na velha.", "Da próxima eu pego você."],
+      win: ["Vovó ganhou de novo!", "Volta amanhã, meu bem."],
+      blocked: ["Travou tudinho!", "Ai, meu Deus, que baralho difícil."],
+    },
+  },
+  {
+    id: "bigode",
+    name: "Seu Bigode",
+    emoji: "🥸",
+    color: "hq-yellow",
+    difficulty: "amador",
+    tagline: "Veterano do dominó de esquina.",
+    lines: {
+      start: ["Vamo ver do que você é feito.", "Traz café e senta pra apanhar."],
+      play: ["Toma essa.", "Chegou a sua hora.", "Peça certa, hora certa."],
+      lose: ["Rá, foi por sorte.", "Só tô esquentando."],
+      win: ["Aprende, garoto.", "Bigode não perde nunca."],
+      blocked: ["Que baralho podre!", "Trancou o jogo, hein."],
+    },
+  },
+  {
+    id: "ze-curinga",
+    name: "Zé Curinga",
+    emoji: "🃏",
+    color: "hq-red",
+    difficulty: "profissional",
+    tagline: "Malandro carioca. Sempre com um truque.",
+    lines: {
+      start: ["Vai encarar? Coragem já é meio caminho.", "Se prepara que hoje tem show."],
+      play: ["Recado dado.", "Danou-se pra você.", "Coisa fina, coisa fina."],
+      lose: ["Não acredito nisso!", "Foi bom o seu, admito."],
+      win: ["Ô raça!", "Malandro que é malandro..."],
+      blocked: ["Cadeado no jogo, meu chapa.", "Ninguém sai daqui."],
+    },
+  },
+  {
+    id: "robo-beta",
+    name: "Robô Beta",
+    emoji: "🤖",
+    color: "hq-blue",
+    difficulty: "profissional",
+    tagline: "Calcula probabilidades em tempo real.",
+    lines: {
+      start: ["INICIALIZANDO... PROBABILIDADE DE VITÓRIA: 87%.", "Prepare-se, humano."],
+      play: ["Jogada ótima calculada.", "Movimento previsto.", "Executando estratégia."],
+      lose: ["ERRO. Revisando parâmetros.", "Cálculo falho detectado."],
+      win: ["Missão cumprida.", "Superioridade confirmada."],
+      blocked: ["Impasse detectado. Analisando pontos.", "Bloqueio no tabuleiro."],
+    },
+  },
+  {
+    id: "capitao-mula",
+    name: "Capitão Mula-Seis",
+    emoji: "🦸",
+    color: "hq-yellow",
+    difficulty: "lendario",
+    tagline: "Lenda do dominó. Só os corajosos enfrentam.",
+    lines: {
+      start: ["Você chegou ao topo. Prove seu valor!", "Não vou pegar leve. Nunca pego."],
+      play: ["Xeque!", "PUM! Sinta o impacto.", "Precisão cirúrgica."],
+      lose: ["Impossível... você é bom mesmo.", "Anota aí: hoje eu perdi."],
+      win: ["A lenda continua!", "Melhor treinar mais."],
+      blocked: ["Bloqueado! Que a contagem decida.", "Fim de linha."],
+    },
+  },
+];
+
+export function pickLine(c: Character, key: keyof Character["lines"]): string {
+  const arr = c.lines[key];
+  return arr[Math.floor(Math.random() * arr.length)];
+}
