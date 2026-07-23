@@ -1,9 +1,16 @@
 import type { Difficulty } from "./ai";
+import portraitZeca from "@/assets/char-zeca.png";
+import portraitZaira from "@/assets/char-zaira.png";
+import portraitBigode from "@/assets/char-bigode.png";
+import portraitCuringa from "@/assets/char-curinga.png";
+import portraitRobo from "@/assets/char-robo.png";
+import portraitMula from "@/assets/char-mula.png";
 
 export type Character = {
   id: string;
   name: string;
   emoji: string;
+  portrait: string;
   color: string;
   difficulty: Difficulty;
   tagline: string;
@@ -21,6 +28,7 @@ export const CHARACTERS: Character[] = [
     id: "zeca",
     name: "Zeca Zero",
     emoji: "🎩",
+    portrait: portraitZeca,
     color: "hq-blue",
     difficulty: "novato",
     tagline: "Aprendiz de boteco. Joga meio no chute.",
@@ -36,6 +44,7 @@ export const CHARACTERS: Character[] = [
     id: "zaira",
     name: "Dona Zaíra",
     emoji: "👵",
+    portrait: portraitZaira,
     color: "hq-pink",
     difficulty: "amador",
     tagline: "Rainha do bingo do bairro. Vai te ensinar.",
@@ -51,6 +60,7 @@ export const CHARACTERS: Character[] = [
     id: "bigode",
     name: "Seu Bigode",
     emoji: "🥸",
+    portrait: portraitBigode,
     color: "hq-yellow",
     difficulty: "amador",
     tagline: "Veterano do dominó de esquina.",
@@ -66,6 +76,7 @@ export const CHARACTERS: Character[] = [
     id: "ze-curinga",
     name: "Zé Curinga",
     emoji: "🃏",
+    portrait: portraitCuringa,
     color: "hq-red",
     difficulty: "profissional",
     tagline: "Malandro carioca. Sempre com um truque.",
@@ -81,6 +92,7 @@ export const CHARACTERS: Character[] = [
     id: "robo-beta",
     name: "Robô Beta",
     emoji: "🤖",
+    portrait: portraitRobo,
     color: "hq-blue",
     difficulty: "profissional",
     tagline: "Calcula probabilidades em tempo real.",
@@ -96,6 +108,7 @@ export const CHARACTERS: Character[] = [
     id: "capitao-mula",
     name: "Capitão Mula-Seis",
     emoji: "🦸",
+    portrait: portraitMula,
     color: "hq-yellow",
     difficulty: "lendario",
     tagline: "Lenda do dominó. Só os corajosos enfrentam.",
