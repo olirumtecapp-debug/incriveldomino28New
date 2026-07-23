@@ -5,17 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Incrível Dominó — HQ / Pop Art design system.
+ * Cores em oklch. Fontes carregadas via <link> em __root.tsx.
  */
 
 @theme inline {
@@ -59,29 +50,44 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-hq-yellow: var(--hq-yellow);
+  --color-hq-red: var(--hq-red);
+  --color-hq-blue: var(--hq-blue);
+  --color-hq-ink: var(--hq-ink);
+  --color-hq-cream: var(--hq-cream);
+  --color-hq-pink: var(--hq-pink);
+  --font-display: "Bangers", "Impact", sans-serif;
+  --font-hq: "Luckiest Guy", "Bangers", sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.75rem;
+  --hq-yellow: oklch(0.88 0.19 95);
+  --hq-red: oklch(0.62 0.24 25);
+  --hq-blue: oklch(0.5 0.19 255);
+  --hq-ink: oklch(0.14 0.02 260);
+  --hq-cream: oklch(0.97 0.03 90);
+  --hq-pink: oklch(0.78 0.16 15);
+  --background: var(--hq-cream);
+  --foreground: var(--hq-ink);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: var(--hq-ink);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: var(--hq-ink);
+  --primary: var(--hq-red);
+  --primary-foreground: oklch(0.98 0.01 90);
+  --secondary: var(--hq-yellow);
+  --secondary-foreground: var(--hq-ink);
+  --muted: oklch(0.93 0.02 90);
+  --muted-foreground: oklch(0.42 0.04 260);
+  --accent: var(--hq-blue);
+  --accent-foreground: oklch(0.98 0.01 90);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: var(--hq-ink);
+  --input: oklch(0.9 0.02 90);
+  --ring: var(--hq-red);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -98,14 +104,14 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
+  --background: oklch(0.16 0.03 260);
+  --foreground: var(--hq-cream);
+  --card: oklch(0.22 0.04 260);
+  --card-foreground: var(--hq-cream);
   --popover: oklch(0.208 0.042 265.755);
   --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
+  --primary: var(--hq-yellow);
+  --primary-foreground: var(--hq-ink);
   --secondary: oklch(0.279 0.041 260.031);
   --secondary-foreground: oklch(0.984 0.003 247.858);
   --muted: oklch(0.279 0.041 260.031);
@@ -114,7 +120,7 @@
   --accent-foreground: oklch(0.984 0.003 247.858);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 30%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.551 0.027 264.364);
   --chart-1: oklch(0.488 0.243 264.376);
@@ -140,5 +146,70 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(var(--hq-ink) 1px, transparent 1px),
+      radial-gradient(var(--hq-ink) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px;
+    background-position: 0 0, 12px 12px;
+    background-blend-mode: normal;
+    background-color: var(--hq-cream);
+  }
+  .dark body {
+    background-color: oklch(0.16 0.03 260);
+  }
+  h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: 0.02em; }
+  .font-hq { font-family: var(--font-hq); letter-spacing: 0.03em; }
+}
+
+@utility ink-border {
+  border: 3px solid var(--hq-ink);
+  box-shadow: 4px 4px 0 0 var(--hq-ink);
+}
+@utility ink-border-lg {
+  border: 4px solid var(--hq-ink);
+  box-shadow: 6px 6px 0 0 var(--hq-ink);
+}
+@utility halftone {
+  background-image: radial-gradient(var(--hq-ink) 1.5px, transparent 1.6px);
+  background-size: 8px 8px;
+}
+@utility burst {
+  clip-path: polygon(
+    50% 0%, 60% 12%, 75% 5%, 78% 22%, 95% 18%, 88% 35%, 100% 45%,
+    86% 55%, 96% 72%, 78% 72%, 82% 92%, 62% 82%, 55% 100%,
+    42% 83%, 25% 96%, 22% 78%, 4% 82%, 15% 62%, 0% 55%,
+    14% 44%, 4% 28%, 22% 30%, 18% 10%, 38% 15%
+  );
+}
+
+@keyframes hq-pop {
+  0% { transform: scale(0.3) rotate(-12deg); opacity: 0; }
+  50% { transform: scale(1.15) rotate(4deg); opacity: 1; }
+  70% { transform: scale(0.95) rotate(-2deg); }
+  100% { transform: scale(1) rotate(-6deg); opacity: 1; }
+}
+@keyframes hq-shake {
+  0%,100% { transform: translate(0,0) rotate(-6deg); }
+  25% { transform: translate(-4px,2px) rotate(-8deg); }
+  75% { transform: translate(4px,-2px) rotate(-4deg); }
+}
+@keyframes tile-drop {
+  0% { transform: translateY(-40px) rotate(-8deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(0); opacity: 1; }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-hq-pop { animation: hq-pop 0.5s cubic-bezier(.34,1.56,.64,1) both; }
+.animate-hq-shake { animation: hq-shake 0.6s ease-in-out; }
+.animate-tile-drop { animation: tile-drop 0.25s ease-out both; }
+.animate-marquee { animation: marquee 20s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hq-pop, .animate-hq-shake, .animate-tile-drop, .animate-marquee {
+    animation: none !important;
+  }
   }
 }
