@@ -132,9 +132,6 @@ function Index() {
 
         {/* Secondary controls */}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <Link to="/play/desafio" onClick={() => { primeAudio(); sfx.tap(); }}>
-            <ComicButton variant="secondary" size="sm">🧩 Desafio diário</ComicButton>
-          </Link>
           <Link to="/characters" onClick={() => { primeAudio(); sfx.tap(); }}>
             <ComicButton variant="accent" size="sm">🎭 Personagens</ComicButton>
           </Link>
