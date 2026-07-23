@@ -14,7 +14,7 @@ import { primeAudio, playMusic, stopMusic, sfx } from "@/lib/audio";
 import { usePrefs } from "@/hooks/use-prefs";
 import { setPrefs } from "@/lib/preferences";
 
-const VALID_MODES = ["casual", "relax", "desafio", "campanha"] as const;
+const VALID_MODES = ["casual", "relax", "campanha"] as const;
 type Mode = (typeof VALID_MODES)[number];
 
 export const Route = createFileRoute("/play/$mode")({
@@ -45,7 +45,6 @@ function pickCharacterForMode(mode: Mode, prefsCharacterId: string, campaignProg
 
 function difficultyForMode(mode: Mode, base: Difficulty): Difficulty {
   if (mode === "relax") return "novato";
-  if (mode === "desafio") return "profissional";
   return base;
 }
 
@@ -59,17 +58,11 @@ function PlayPage() {
   const difficulty = difficultyForMode(mode, character.difficulty);
 
   const [seed, setSeed] = useState(() => Date.now() & 0x7fffffff);
-  const seedForDaily = useMemo(() => {
-    if (mode !== "desafio") return seed;
-    const d = new Date();
-    return (d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()) & 0x7fffffff;
-  }, [mode, seed]);
-
   const [state, setState] = useState<GameState>(() =>
     newGame({
       ruleset: mode === "relax" ? "draw" : prefs.ruleset,
-      targetScore: mode === "desafio" ? 60 : prefs.targetScore,
-      seed: seedForDaily,
+      targetScore: prefs.targetScore,
+      seed,
     }),
   );
   const [effect, setEffect] = useState<EffectKind | null>(null);
@@ -78,7 +71,7 @@ function PlayPage() {
 
   useEffect(() => {
     primeAudio();
-    playMusic(mode === "campanha" ? "campanha" : mode === "relax" ? "relax" : mode === "desafio" ? "desafio" : "casual");
+    playMusic(mode === "campanha" ? "campanha" : mode === "relax" ? "relax" : "casual");
     return () => stopMusic();
   }, [mode]);
 
@@ -149,11 +142,12 @@ function PlayPage() {
   const mustPass = state.turn === "you" && myLegal.length === 0 && !canDraw(state);
 
   const restart = () => {
-    setSeed(Date.now() & 0x7fffffff);
+    const nextSeed = Date.now() & 0x7fffffff;
+    setSeed(nextSeed);
     setState(newGame({
       ruleset: mode === "relax" ? "draw" : prefs.ruleset,
-      targetScore: mode === "desafio" ? 60 : prefs.targetScore,
-      seed: mode === "desafio" ? seedForDaily : Date.now() & 0x7fffffff,
+      targetScore: prefs.targetScore,
+      seed: nextSeed,
     }));
     setAiDialog(pickLine(character, "start"));
     setEffect(null);
@@ -172,15 +166,22 @@ function PlayPage() {
 
         {/* AI character speech bubble */}
         <div className="mt-4 flex items-start gap-3">
-          <div className="text-4xl">{character.emoji}</div>
-          <div className="flex-1 ink-border rounded-2xl bg-hq-cream px-4 py-2 relative">
+          <img
+            src={character.portrait}
+            alt={character.name}
+            loading="lazy"
+            width={64}
+            height={64}
+            className="shrink-0 h-14 w-14 sm:h-16 sm:w-16 rounded-full object-cover ink-border bg-hq-cream"
+          />
+          <div className="flex-1 min-w-0 ink-border rounded-2xl bg-hq-cream px-4 py-2 relative">
             <span className="font-display italic">{aiDialog}</span>
           </div>
         </div>
 
         <div ref={bannerRef} className="mt-4">
-          <ComicPanel tone="cream" className="halftone">
-            <div className="text-xs font-display uppercase mb-1 opacity-70">
+          <ComicPanel tone="ink">
+            <div className="text-xs font-display uppercase mb-2 opacity-95 bg-hq-cream text-hq-ink ink-border rounded-md px-2 py-1 inline-block">
               Pontas: L={state.leftEnd ?? "—"} · R={state.rightEnd ?? "—"} · Monte: {state.boneyard.length}
             </div>
             <Board tiles={state.board} />

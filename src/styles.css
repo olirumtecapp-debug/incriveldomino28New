@@ -152,10 +152,9 @@
     color: var(--color-foreground);
     font-family: var(--font-body);
     background-image:
-      radial-gradient(var(--hq-ink) 1px, transparent 1px),
-      radial-gradient(var(--hq-ink) 1px, transparent 1px);
-    background-size: 24px 24px, 24px 24px;
-    background-position: 0 0, 12px 12px;
+      radial-gradient(color-mix(in oklab, var(--hq-ink) 12%, transparent) 1px, transparent 1.5px);
+    background-size: 28px 28px;
+    background-position: 0 0;
     background-blend-mode: normal;
     background-color: var(--hq-cream);
   }

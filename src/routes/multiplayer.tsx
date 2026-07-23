@@ -55,8 +55,15 @@ function Multiplayer() {
                   onClick={() => { setSelected(c); setBubble(pickLine(c, "start")); setTimeout(() => setBubble(""), 2500); }}
                   className={`ink-border rounded-md p-2 text-left transition-transform hover:-translate-y-0.5 bg-hq-cream text-hq-ink ${active ? "ring-4 ring-hq-yellow -rotate-1" : ""}`}
                 >
-                  <div className="text-3xl leading-none">{c.emoji}</div>
-                  <div className="font-hq text-lg">{c.name}</div>
+                  <img
+                    src={c.portrait}
+                    alt={c.name}
+                    loading="lazy"
+                    width={96}
+                    height={96}
+                    className="w-full aspect-square object-cover rounded-md ink-border bg-hq-cream mb-1"
+                  />
+                  <div className="font-hq text-base sm:text-lg truncate">{c.name}</div>
                   <div className="text-[11px] font-semibold opacity-80 line-clamp-2">{c.tagline}</div>
                 </button>
               );
@@ -71,8 +78,9 @@ function Multiplayer() {
                 <ComicButton size="sm" variant="primary" onClick={() => sendTaunt("lose")}>😅 Foi mal</ComicButton>
               </div>
               {bubble && (
-                <div className="mt-3 inline-block bg-hq-cream text-hq-ink ink-border rounded-md px-3 py-2 font-semibold -rotate-1 animate-hq-pop">
-                  <span className="mr-1">{selected.emoji}</span>{bubble}
+                <div className="mt-3 inline-flex items-center gap-2 bg-hq-cream text-hq-ink ink-border rounded-md px-3 py-2 font-semibold -rotate-1 animate-hq-pop max-w-full">
+                  <img src={selected.portrait} alt={selected.name} loading="lazy" width={32} height={32} className="h-8 w-8 rounded-full object-cover ink-border shrink-0" />
+                  <span>{bubble}</span>
                 </div>
               )}
             </div>

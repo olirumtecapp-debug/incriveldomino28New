@@ -85,29 +85,35 @@ function Settings() {
           </ComicPanel>
 
           <ComicPanel tone="cream" title="Mesa">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
               {TABLES.map((t) => (
                 <button
                   key={t.id}
                   onClick={() => { setPrefs({ tableTheme: t.id }); sfx.tap(); }}
-                  className={`ink-border rounded-lg p-2 text-xs font-display uppercase ${prefs.tableTheme === t.id ? "ring-4 ring-hq-red" : ""}`}
+                  className={`relative ink-border rounded-lg p-2 text-xs font-display uppercase transition-transform hover:-translate-y-0.5 ${prefs.tableTheme === t.id ? "ring-4 ring-hq-red bg-hq-yellow -rotate-1 scale-[1.02]" : "bg-hq-cream"}`}
                 >
                   <div className={`h-10 rounded ${t.swatch} mb-1 ink-border`} />
                   {t.label}
+                  {prefs.tableTheme === t.id && (
+                    <span className="absolute -top-2 -right-2 h-7 w-7 rounded-full bg-hq-red text-hq-cream ink-border flex items-center justify-center font-hq text-sm animate-hq-pop">✓</span>
+                  )}
                 </button>
               ))}
             </div>
           </ComicPanel>
 
           <ComicPanel tone="cream" title="Skin das peças">
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {SKINS.map((s) => (
                 <button
                   key={s.id}
                   onClick={() => { setPrefs({ tileSkin: s.id }); sfx.tap(); }}
-                  className={`ink-border rounded-lg p-2 font-display uppercase text-sm ${prefs.tileSkin === s.id ? "ring-4 ring-hq-red bg-hq-yellow" : ""}`}
+                  className={`relative ink-border rounded-lg p-2 font-display uppercase text-sm transition-transform hover:-translate-y-0.5 ${prefs.tileSkin === s.id ? "ring-4 ring-hq-red bg-hq-yellow -rotate-1 scale-[1.02]" : "bg-hq-cream"}`}
                 >
                   {s.label}
+                  {prefs.tileSkin === s.id && (
+                    <span className="absolute -top-2 -right-2 h-7 w-7 rounded-full bg-hq-red text-hq-cream ink-border flex items-center justify-center font-hq text-sm animate-hq-pop">✓</span>
+                  )}
                 </button>
               ))}
             </div>

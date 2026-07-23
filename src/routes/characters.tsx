@@ -40,8 +40,15 @@ function Characters() {
             return (
               <ComicPanel key={c.id} tone={selected ? "yellow" : "cream"} className={selected ? "ring-4 ring-hq-red" : ""}>
                 <div className="flex items-start gap-3">
-                  <div className="text-5xl">{c.emoji}</div>
-                  <div className="flex-1">
+                  <img
+                    src={c.portrait}
+                    alt={c.name}
+                    loading="lazy"
+                    width={72}
+                    height={72}
+                    className="shrink-0 h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover ink-border bg-hq-cream"
+                  />
+                  <div className="flex-1 min-w-0">
                     <div className="font-hq text-2xl">{c.name}</div>
                     <div className="font-display uppercase text-xs opacity-80">{DIFF_LABEL[c.difficulty]}</div>
                   </div>
