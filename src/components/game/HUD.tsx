@@ -1,9 +1,14 @@
 import { ComicPanel } from "@/components/comic/ComicPanel";
+import { FullscreenToggle } from "@/components/comic/FullscreenToggle";
 import type { GameState, Player } from "@/game/types";
 
 export function HUD({ state, character }: { state: GameState; character: { name: string; emoji: string } }) {
   const turn: Player = state.turn;
   return (
+   <div>
+    <div className="flex justify-end mb-2">
+      <FullscreenToggle size="sm" />
+    </div>
     <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3">
       <ComicPanel tone="yellow" className="text-center">
         <div className="font-display uppercase text-xs">Você</div>
@@ -20,5 +25,6 @@ export function HUD({ state, character }: { state: GameState; character: { name:
         <div className="font-hq text-3xl">{state.score.ai}</div>
       </ComicPanel>
     </div>
+   </div>
   );
 }

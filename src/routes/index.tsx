@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ComicButton } from "@/components/comic/ComicButton";
+import { FullscreenToggle } from "@/components/comic/FullscreenToggle";
 import { primeAudio, playMusic, stopMusic, sfx } from "@/lib/audio";
 import heroAsset from "@/assets/hero-incrivel-domino.jpg.asset.json";
 import logoAsset from "@/assets/logo-incrivel-domino.png.asset.json";
@@ -68,6 +69,7 @@ function Index() {
             >
               Ajuda
             </Link>
+            <FullscreenToggle />
           </div>
         </nav>
 
