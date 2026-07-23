@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
       { title: "Incrível Dominó — Dominó estilo HQ" },
       { name: "description", content: "Peças voando. Mesa fervendo. O dominó mais divertido dos quadrinhos. Grátis, sem cadastro." },
       { property: "og:title", content: "Incrível Dominó — Dominó estilo HQ" },
-      { property: "og:description", content: "Peças voando. Mesa fervendo. O dominó mais divertido dos quadrinhos." },
+      { property: "og:description", content: "Peças voando. Mesa fervendo. O dominó mais divertido dos quadrinhos. Grátis, sem cadastro." },
       { property: "og:image", content: heroAsset.url },
       { name: "twitter:image", content: heroAsset.url },
     ],
