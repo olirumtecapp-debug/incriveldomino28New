@@ -106,7 +106,13 @@ export function applyMove(state: GameState, player: Player, move: PlayMove): Gam
     if (idx < 0) return state;
     const tile = s.hands[player][idx];
     if (s.board.length === 0) {
-      const placed: PlacedTile = { ...tile, orientation: tile.a === tile.b ? "v" : "h", side: "C" };
+      const placed: PlacedTile = {
+        ...tile,
+        orientation: tile.a === tile.b ? "v" : "h",
+        side: "C",
+        leftPip: tile.a,
+        rightPip: tile.b,
+      };
       s.board.push(placed);
       s.leftEnd = tile.a;
       s.rightEnd = tile.b;
@@ -114,13 +120,29 @@ export function applyMove(state: GameState, player: Player, move: PlayMove): Gam
       const end = s.leftEnd!;
       if (tile.a !== end && tile.b !== end) return state;
       const outer: Pip = tile.a === end ? tile.b : tile.a;
-      s.board.unshift({ ...tile, orientation: tile.a === tile.b ? "v" : "h", side: "L" });
+      // On the left: matching pip must sit on the RIGHT visually (touching neighbor).
+      // outer becomes the new leftEnd and appears on the LEFT visually.
+      s.board.unshift({
+        ...tile,
+        orientation: tile.a === tile.b ? "v" : "h",
+        side: "L",
+        leftPip: outer,
+        rightPip: end,
+      });
       s.leftEnd = outer;
     } else if (move.side === "R") {
       const end = s.rightEnd!;
       if (tile.a !== end && tile.b !== end) return state;
       const outer: Pip = tile.a === end ? tile.b : tile.a;
-      s.board.push({ ...tile, orientation: tile.a === tile.b ? "v" : "h", side: "R" });
+      // On the right: matching pip on the LEFT visually (touching neighbor);
+      // outer on the RIGHT becomes new rightEnd.
+      s.board.push({
+        ...tile,
+        orientation: tile.a === tile.b ? "v" : "h",
+        side: "R",
+        leftPip: end,
+        rightPip: outer,
+      });
       s.rightEnd = outer;
     } else return state;
     s.hands[player].splice(idx, 1);
