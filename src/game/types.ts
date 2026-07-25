@@ -1,6 +1,11 @@
 export type Pip = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 export type Tile = { id: string; a: Pip; b: Pip };
-export type PlacedTile = Tile & { orientation: "h" | "v"; side: "L" | "R" | "C" };
+export type PlacedTile = Tile & {
+  orientation: "h" | "v";
+  side: "L" | "R" | "C";
+  leftPip: Pip;
+  rightPip: Pip;
+};
 
 export type Player = "you" | "ai";
 
