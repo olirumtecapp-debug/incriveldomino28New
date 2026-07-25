@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TutorialRouteImport } from './routes/tutorial'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as MultiplayerRouteImport } from './routes/multiplayer'
+import { Route as DoacaoRouteImport } from './routes/doacao'
 import { Route as CharactersRouteImport } from './routes/characters'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayModeRouteImport } from './routes/play.$mode'
@@ -29,6 +30,11 @@ const SettingsRoute = SettingsRouteImport.update({
 const MultiplayerRoute = MultiplayerRouteImport.update({
   id: '/multiplayer',
   path: '/multiplayer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoacaoRoute = DoacaoRouteImport.update({
+  id: '/doacao',
+  path: '/doacao',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CharactersRoute = CharactersRouteImport.update({
@@ -50,6 +56,7 @@ const PlayModeRoute = PlayModeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/characters': typeof CharactersRoute
+  '/doacao': typeof DoacaoRoute
   '/multiplayer': typeof MultiplayerRoute
   '/settings': typeof SettingsRoute
   '/tutorial': typeof TutorialRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/characters': typeof CharactersRoute
+  '/doacao': typeof DoacaoRoute
   '/multiplayer': typeof MultiplayerRoute
   '/settings': typeof SettingsRoute
   '/tutorial': typeof TutorialRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/characters': typeof CharactersRoute
+  '/doacao': typeof DoacaoRoute
   '/multiplayer': typeof MultiplayerRoute
   '/settings': typeof SettingsRoute
   '/tutorial': typeof TutorialRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/characters'
+    | '/doacao'
     | '/multiplayer'
     | '/settings'
     | '/tutorial'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/characters'
+    | '/doacao'
     | '/multiplayer'
     | '/settings'
     | '/tutorial'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/characters'
+    | '/doacao'
     | '/multiplayer'
     | '/settings'
     | '/tutorial'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CharactersRoute: typeof CharactersRoute
+  DoacaoRoute: typeof DoacaoRoute
   MultiplayerRoute: typeof MultiplayerRoute
   SettingsRoute: typeof SettingsRoute
   TutorialRoute: typeof TutorialRoute
@@ -131,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MultiplayerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/doacao': {
+      id: '/doacao'
+      path: '/doacao'
+      fullPath: '/doacao'
+      preLoaderRoute: typeof DoacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/characters': {
       id: '/characters'
       path: '/characters'
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CharactersRoute: CharactersRoute,
+  DoacaoRoute: DoacaoRoute,
   MultiplayerRoute: MultiplayerRoute,
   SettingsRoute: SettingsRoute,
   TutorialRoute: TutorialRoute,
