@@ -19,7 +19,12 @@ export function Board({ tiles }: { tiles: PlacedTile[] }) {
         ) : (
           tiles.map((t) => (
             <div key={t.id} className="animate-tile-drop">
-              <DominoTile a={t.a} b={t.b} orientation={t.a === t.b ? "v" : "h"} size={36} />
+              <DominoTile
+                a={t.leftPip ?? t.a}
+                b={t.rightPip ?? t.b}
+                orientation={t.a === t.b ? "v" : "h"}
+                size={36}
+              />
             </div>
           ))
         )}
