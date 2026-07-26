@@ -36,9 +36,12 @@ export const Route = createFileRoute("/doacao")({
 function DoacaoPage() {
   const [copied, setCopied] = useState(false);
 
-  const copyName = async () => {
+  const PIX_CODE =
+    "00020101021126580014br.gov.bcb.pix0136ccc2fd5a-cc51-4626-ac9b-8010315042f55204000053039865802BR5924MURILO FERREIRA DA SILVA6009SAO PAULO622905251KYF6GJBG4K0TVYH7QKHP9TSD63042519";
+
+  const copyPixCode = async () => {
     try {
-      await navigator.clipboard.writeText("Murilo Ferreira da Silva");
+      await navigator.clipboard.writeText(PIX_CODE);
       try { sfx.tap(); } catch {}
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
@@ -92,19 +95,26 @@ function DoacaoPage() {
 
             <div>
               <div className="font-display uppercase text-xs opacity-70 tracking-widest">Favorecido</div>
+              <div className="font-bold text-xl">Murilo Ferreira da Silva</div>
+              <div className="text-sm mt-1 italic opacity-70 font-display">
+                Motorista &amp; desenvolvedor 🚗💻
+              </div>
+            </div>
+
+            <div>
+              <div className="font-display uppercase text-xs opacity-70 tracking-widest">Pix copia e cola</div>
               <div className="flex items-center gap-2 flex-wrap">
-                <div className="font-bold text-xl">Murilo Ferreira da Silva</div>
+                <code className="font-mono text-sm sm:text-base break-all bg-hq-ink/10 rounded px-2 py-1 flex-1 min-w-0">
+                  {PIX_CODE.slice(0, 28)}…
+                </code>
                 <button
-                  onClick={copyName}
+                  onClick={copyPixCode}
                   className="ink-border rounded-md bg-hq-cream p-1.5 hover:-translate-y-0.5 transition-transform"
-                  title="Copiar nome"
-                  aria-label="Copiar nome"
+                  title={copied ? "Código Pix copiado!" : "Copiar código Pix"}
+                  aria-label={copied ? "Código Pix copiado" : "Copiar código Pix"}
                 >
                   {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                 </button>
-              </div>
-              <div className="text-sm mt-1 italic opacity-70 font-display">
-                Motorista &amp; desenvolvedor 🚗💻
               </div>
             </div>
 
