@@ -113,6 +113,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         <Scripts />
+        <script src="https://projetoij.lovable.app/api/public/pij.js" defer />
       </body>
     </html>
   );
