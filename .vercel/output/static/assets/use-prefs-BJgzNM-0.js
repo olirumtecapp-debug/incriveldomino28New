@@ -1,0 +1,1 @@
+import{a as e,o as t}from"./index-DRkDs2wh.js";import{a as n,s as r}from"./audio-aPeUFrCt.js";var i=t(e(),1);function a(){return(0,i.useSyncExternalStore)(e=>r(e),()=>n(),()=>n())}export{a as t};
