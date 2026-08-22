@@ -69,16 +69,7 @@ function Index() {
             >
               Ajuda
             </Link>
-            <Link
-              to="/doacao"
-              onClick={() => { primeAudio(); sfx.tap(); }}
-              aria-label="Doação"
-              title="Apoie o projeto"
-              className="px-2.5 py-1 bg-hq-red text-hq-cream ink-border font-display uppercase text-sm sm:text-base hover:-translate-y-0.5 transition-transform rounded-md inline-flex items-center gap-1.5"
-            >
-              <span aria-hidden>❤</span>
-              <span className="hidden sm:inline">Doar</span>
-            </Link>
+            
             <FullscreenToggle />
           </div>
         </nav>
